@@ -58,6 +58,22 @@
         songs.value = songs.value.filter(song => song.id !== id);
     }
 
+    const completedSongs = computed(() =>
+        songs.value.filter(song => song.escoltada).length
+    );
+
+    const pendingSongs = computed (() => {
+        var songPending = 0;
+
+        for(const song of songs.value) {
+            if(song.escoltada === false) {
+                songPending++
+            }
+        };
+
+        return songPending;
+    });
+
 </script>
 
 <template>
@@ -70,6 +86,7 @@
                 @complete="changeStatus"
                 @delete="deleteSong"
             />
+            <p class="text-info"> Pendents: {{ pendingSongs }} | Escoltades: {{ completedSongs }}</p>
         </section>
     </main>
 </template>
@@ -112,6 +129,10 @@ body {
 
 h1 {
     margin: 0 0 24px;
+    text-align: center;
+}
+
+.text-info {
     text-align: center;
 }
 
