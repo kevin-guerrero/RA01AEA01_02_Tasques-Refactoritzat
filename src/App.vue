@@ -61,12 +61,63 @@
 </script>
 
 <template>
-    <TaskForm @add-song="addSong" />
-    <TaskList
-        :songsList="songsListened"
-        @complete="changeStatus"
-        @delete="deleteSong"
-    />
+    <main class="app">
+        <section class="song-manager">
+            <h1>Gestor de cançons</h1>
+            <TaskForm @add-song="addSong" />
+            <TaskList
+                :songsList="songsListened"
+                @complete="changeStatus"
+                @delete="deleteSong"
+            />
+        </section>
+    </main>
 </template>
 
-<style scoped></style>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: #f1f5f9;
+    color: #1e293b;
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    min-height: 100vh;
+}
+</style>
+
+<style scoped>
+.app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.song-manager {
+    width: min(100%, 520px);
+    padding: 32px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 16px rgb(15 23 42 / 10%);
+}
+
+h1 {
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .song-manager {
+        padding: 24px 18px;
+    }
+}
+</style>

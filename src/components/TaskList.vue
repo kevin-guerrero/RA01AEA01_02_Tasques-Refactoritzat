@@ -26,3 +26,13 @@
         />
     </ul>
 </template>
+
+<style scoped>
+ul {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+}
+</style>
