@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import { computed, ref } from 'vue';
+    import TaskForm from './components/TaskForm.vue';
     import TaskList from './components/TaskList.vue';
+    
     const songs = ref([
     {
         id: 1,
@@ -44,6 +46,14 @@
         }
     };
 
+    const addSong = (songName: string) => {
+        songs.value.push({
+            id: Date.now(),
+            nom: songName,
+            escoltada: false
+        });
+    }
+
     function deleteSong(id: number) {
         songs.value = songs.value.filter(song => song.id !== id);
     }
@@ -51,6 +61,7 @@
 </script>
 
 <template>
+    <TaskForm @add-song="addSong" />
     <TaskList
         :songsList="songsListened"
         @complete="changeStatus"
