@@ -9,6 +9,10 @@
         }[]
     }>();
 
+    const emit = defineEmits<{
+        complete: [id: number]
+        delete: [id: number]
+    }>();
 </script>
 
 <template>
@@ -17,6 +21,8 @@
         v-for="song in songsList"
         :key="song.id"
         :song="song"
+        @complete="emit('complete', $event)"
+        @delete="emit('delete', $event)"
         />
     </ul>
 </template>

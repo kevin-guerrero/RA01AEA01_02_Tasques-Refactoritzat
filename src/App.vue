@@ -36,11 +36,26 @@
         }
     });
 
+    const changeStatus = (songSelect: number) => {
+        const song = songs.value.find(song => song.id === songSelect);
+
+        if (song) {
+            song.escoltada = !song.escoltada;
+        }
+    };
+
+    function deleteSong(id: number) {
+        songs.value = songs.value.filter(song => song.id !== id);
+    }
 
 </script>
 
 <template>
-    <TaskList :songsList="songsListened"/>
+    <TaskList
+        :songsList="songsListened"
+        @complete="changeStatus"
+        @delete="deleteSong"
+    />
 </template>
 
 <style scoped></style>
